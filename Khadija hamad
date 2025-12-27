@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxe Malkia - Vikuba na Mikononi</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-pink: #FF6B9D;
+            --soft-pink: #FFE5EC;
+            --royal-purple: #A85CF9;
+            --gold: #FFD700;
+            --deep-navy: #1A1A2E;
+            --white: #FFFFFF;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, var(--soft-pink) 0%, #F8F9FA 100%);
+            color: var(--deep-navy);
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, var(--soft-pink) 0%, #F0F8FF 100%);
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .particle:nth-child(1) {
+            width: 20px;
+            height: 20px;
+            background: var(--primary-pink);
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .particle:nth-child(2) {
+            width: 15px;
+            height: 15px;
+            background: var(--royal-purple);
+            left: 70%;
+            animation-delay: 2s;
+        }
+
+        .particle:nth-child(3) {
+            width: 10px;
+            height: 10px;
+            background: var(--gold);
+            left: 40%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
+            50% { transform: translateY(-100px) rotate(180deg); opacity: 1; }
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-pink), var(--royal-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--deep-navy);
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-pink);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4rem 5%;
+            min-height: 80vh;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero-content {
+            flex: 1;
+            animation: fadeInLeft 1s ease;
+        }
+
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-pink), var(--royal-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary-pink), var(--royal-purple));
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.6);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .cta-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            filter: drop-shadow(0 10px 30px var(--shadow));
+            border-radius: 20px;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--deep-navy);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '✨';
+            position: absolute;
+            top: -10px;
+            right: -30px;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.2) rotate(180deg); }
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px var(--shadow);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.3);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.1);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--primary-pink);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--deep-navy);
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            color: var(--primary-pink);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .product-button {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-pink), var(--royal-purple));
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
+        }
+
+        /* Features Section */
+        .features {
+            background: white;
+            padding: 5rem 5%;
+            margin-top: 5rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 20px;
+            background: linear-gradient(135deg, var(--soft-pink), white);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 107, 157, 0.1) 0%, transparent 70%);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+            z-index: 0;
+        }
+
+        .feature-card:hover::before {
+            top: -100%;
+            left: -100%;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary-pink);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--deep-navy);
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.1;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Cart Icon */
+        .cart-icon {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--primary-pink), var(--royal-purple));
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.4);
+            transition: all 0.3s ease;
+            z-index: 999;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .cart-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--gold);
+            color: var(--deep-navy);
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">Luxe Malkia 👑</div>
+            <ul class="nav-links">
+                <li><a href="#home">Nyumbani</a></li>
+                <li><a href="#products">Bidhaa</a></li>
+                <li><a href="#about">Kuhusu Sisi</a></li>
+                <li><a href="#contact">Mawasiliano</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Urembo wa Malkia <br> Katika Kila Mwonekano</h1>
+            <p>Vikuba vya kifua na mikononi ya kifahari kama ulivyotaka. Hisi ujasiri na urembo wa kweli kwa bidhaa zetu za hali ya juu zinazopendekezwa na wanawake wengi.</p>
+            <button class="cta-button" onclick="scrollToProducts()">
+                <i class="fas fa-shopping-bag"></i> Nunua Sasa
+            </button>
+        </div>
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=500" alt="Vikuba vya kifahari">
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <h2 class="section-title">Bidhaa Bora Zetu</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400" alt="Vikuba vya kifua" class="product-image">
+                <span class="product-badge">PYA!</span>
+                <div class="product-info">
+                    <h3 class="product-name">Vikuba vya Kifua - Malkia Max</h3>
+                    <p class="product-price">TSh 45,000</p>
+                    <button class="product-button" onclick="addToCart('Vikuba vya Kifua - Malkia Max')">
+                        <i class="fas fa-cart-plus"></i> Weka kwenye Karatasi
+                    </button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400" alt="Mkononi" class="product-image">
+                <span class="product-badge">BORABORA!</span>
+                <div class="product-info">
+                    <h3 class="product-name">Mkononi wa Kifahari - Zawadi</h3>
+                    <p class="product-price">TSh 85,000</p>
+                    <button class="product-button" onclick="addToCart('Mkononi wa Kifahari - Zawadi')">
+                        <i class="fas fa-cart-plus"></i> Weka kwenye Karatasi
+                    </button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1565084888279-aca607ec683c?w=400" alt="Seti ya vikuba" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">Seti ya Kifahari - Urembo Kamili</h3>
+                    <p class="product-price">TSh 120,000</p>
+                    <button class="product-button" onclick="addToCart('Seti ya Kifahari - Urembo Kamili')">
+                        <i class="fas fa-cart-plus"></i> Weka kwenye Karatasi
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2 class="section-title">Kwanini Kutuchagua Sisi?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-shipping-fast feature-icon"></i>
+                <h3 class="feature-title">Usafirishaji wa Haraka</h3>
+                <p>Pata bidhaa zako ndani ya masaa 24</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-shield-alt feature-icon"></i>
+                <h3 class="feature-title">Usalama wa Malengo</h3>
+                <p>Lipia salama na wasi wasi wowote</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-exchange-alt feature-icon"></i>
+                <h3 class="feature-title">Kurudisha Bidhaa</h3>
+                <p>Kurudisha bidhaa ndani ya siku 30</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-headset feature-icon"></i>
+                <h3 class="feature-title">Huduma ya Walengwa</h3>
+                <p>Tupo 24/7 kukusaidia</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <h3>Luxe Malkia - Urembo wa Mwanamke</h3>
+        <p>&copy; 2024 Luxe Malkia. Haki zote zimehifadhiwa.</p>
+        <p>Wasiliana: +255 712 345 678 | info@luxemalkia.com</p>
+    </footer>
+
+    <!-- Cart Icon -->
+    <div class="cart-icon" onclick="openCart()">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count" id="cartCount">0</span>
+    </div>
+
+    <script>
+        // Cart functionality
+        let cart = [];
+
+        function addToCart(productName) {
+            cart.push(productName);
+            updateCartCount();
+            
+            // Show success message
+            const button = event.target;
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-check"></i> Imeongezwa!';
+            button.style.background = '#4CAF50';
+            
+            setTimeout(() => {
+                button.innerHTML = originalText;
+                button.style.background = 'linear-gradient(135deg, var(--primary-pink), var(--royal-purple))';
+            }, 1500);
+        }
+
+        function updateCartCount() {
+            document.getElementById('cartCount').textContent = cart.length;
+        }
+
+        function openCart() {
+            if (cart.length === 0) {
+                alert('Karatasi yako ni tupu! Ongeza bidhaa kwanza.');
+            } else {
+                alert('Bidhaa katika karatasi:\n' + cart.join('\n') + '\n\nJumla: TSh ' + (cart.length * 45000));
+            }
+        }
+
+        function scrollToProducts() {
+            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all product cards
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
